@@ -1,0 +1,86 @@
+[
+  {
+    "id": "4576523f-2692-4693-b484-676bd0c0248c",
+    "title": "Foundation",
+    "author": "Isaac Asimov",
+    "coverUrl": "https://covers.openlibrary.org/b/id/14612610-M.jpg",
+    "status": "want",
+    "createdAt": "2026-03-15T02:39:07.700Z",
+    "updatedAt": "2026-03-15T02:39:07.700Z"
+  },
+  {
+    "id": "7216605b-7ca6-475f-a4ff-4a7cc9797b2c",
+    "title": "Ficciones",
+    "author": "Jorge Luis Borges",
+    "coverUrl": "https://covers.openlibrary.org/b/id/10832290-M.jpg",
+    "status": "want",
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  },
+  {
+    "id": "c0186f9b-a17c-4763-8378-5707d38d7a38",
+    "title": "The Mysterious Affair at Styles",
+    "author": "Agatha Christie",
+    "coverUrl": "https://covers.openlibrary.org/b/id/13699667-M.jpg",
+    "status": "reading",
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  },
+  {
+    "id": "bbf90298-540c-4251-a862-2b734c611a0e",
+    "title": "Beloved",
+    "author": "Toni Morrison",
+    "coverUrl": "https://covers.openlibrary.org/b/id/8261367-M.jpg",
+    "status": "read",
+    "rating": 4,
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  },
+  {
+    "id": "1d21d9cf-66fb-4bfe-afb8-d7eb6c067375",
+    "title": "The Last Man",
+    "author": "Mary Shelley",
+    "coverUrl": "https://covers.openlibrary.org/b/id/882662-M.jpg",
+    "status": "want",
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  },
+  {
+    "id": "f9a791ba-3314-4574-8793-fc3a64f3c39e",
+    "title": "The Time Machine",
+    "author": "H. G. Wells",
+    "coverUrl": "https://covers.openlibrary.org/b/id/9009316-M.jpg",
+    "status": "want",
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  },
+  {
+    "id": "9c727d95-819c-49c5-877c-4dea5cb8c437",
+    "title": "Herland",
+    "author": "Charlotte Perkins Gilman",
+    "coverUrl": "https://covers.openlibrary.org/b/id/448130-M.jpg",
+    "status": "reading",
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  },
+  {
+    "id": "87db7a15-a14d-447f-94ae-c82b6e24823e",
+    "title": "The Invisible Man",
+    "author": "H. G. Wells",
+    "coverUrl": "https://covers.openlibrary.org/b/id/6419199-M.jpg",
+    "status": "read",
+    "rating": 4,
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  },
+  {
+    "id": "bba82fd8-7eed-4c5d-811d-afcbb3b3e70a",
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "coverUrl": "https://covers.openlibrary.org/b/id/11481354-M.jpg",
+    "status": "read",
+    "rating": 4,
+    "createdAt": "2026-03-15T02:39:07.701Z",
+    "updatedAt": "2026-03-15T02:39:07.701Z"
+  }
+]
