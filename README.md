@@ -5,9 +5,9 @@
 ## 技术栈
 
 - **前端**: React 18 + TypeScript + Vite
-- **存储**: 浏览器 localStorage（无需服务器）
+- **存储**: 默认浏览器 localStorage；可选 **Supabase** 做云同步（需配置）
 
-首次打开时若无数据，会自动写入 10 本示例书籍；之后增删改均保存在本机浏览器中，刷新或下次打开仍保留。
+未配置 Supabase 时，数据保存在浏览器 localStorage；配置 Supabase 后，数据同步到云端（匿名登录）。首次打开时若无书籍，会自动添加 10 本示例书。
 
 ## 快速开始
 
@@ -53,6 +53,40 @@ BookShelf/
 │   └── hooks/useBooks.ts
 └── server/                  # 已不使用；可保留或删除
 ```
+
+## 可选：Supabase 云同步
+
+1. **创建项目**： [supabase.com](https://supabase.com) → New project，记下 **Project URL** 和 **anon key**（Project Settings → API）。
+2. **建表与 RLS**：在 SQL Editor 中执行以下 SQL（创建 `books` 表并开启 RLS）：
+
+```sql
+create table public.books (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null references auth.users(id) on delete cascade,
+  title text not null,
+  author text not null,
+  cover_url text,
+  status text not null check (status in ('reading', 'read', 'want')),
+  rating int check (rating is null or (rating >= 1 and rating <= 5)),
+  notes text,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
+);
+alter table public.books enable row level security;
+create policy "Users can do everything on own books"
+  on public.books for all
+  using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create or replace function public.set_updated_at() returns trigger as $$
+begin new.updated_at = now(); return new; end;
+$$ language plpgsql;
+create trigger books_updated_at before update on public.books
+  for each row execute function public.set_updated_at();
+```
+
+3. **开启匿名登录**：Authentication → Providers → **Anonymous** 设为 ON。
+4. **配置前端**：复制 `.env.example` 为 `.env`，填入 `VITE_SUPABASE_URL` 和 `VITE_SUPABASE_ANON_KEY`，重启 `npm run dev`。
+
+配置完成后，应用会使用匿名账号将书籍同步到 Supabase；不配置则继续使用 localStorage。
 
 ## 构建与预览
 

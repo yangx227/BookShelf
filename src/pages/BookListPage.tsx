@@ -5,7 +5,9 @@ import BookCard from '../components/BookCard'
 import BookDetailModal from '../components/BookDetailModal'
 import AddBookModal from '../components/AddBookModal'
 import type { Book, FilterStatus } from '../types/book'
+import { useAuth } from '../contexts/AuthContext'
 import { useBooks } from '../hooks/useBooks'
+import { isSupabaseConfigured } from '../lib/supabase'
 
 const DEBOUNCE_MS = 300
 
@@ -15,16 +17,20 @@ export default function BookListPage() {
   const [detailBook, setDetailBook] = useState<Book | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
 
+  const { user, loading: authLoading, error: authError, retry: authRetry } = useAuth()
   const [status, setStatus] = useState<FilterStatus>('all')
+  const userId = isSupabaseConfigured() ? (user?.id ?? null) : null
   const {
     books,
-    loading,
+    loading: booksLoading,
     error,
     refetch,
     updateBook,
     removeBook,
     addBook,
-  } = useBooks(status, debouncedQuery)
+  } = useBooks(status, debouncedQuery, userId)
+
+  const loading = authLoading || booksLoading
 
   // 防抖：同步到真正请求用的 query
   const handleSearchChange = useCallback((value: string) => {
@@ -85,7 +91,18 @@ export default function BookListPage() {
       </div>
 
       <main className="page__main">
-        {error ? (
+        {authError ? (
+          <div className="page__error" role="alert">
+            <p><strong>Supabase 连接失败：</strong> {authError}</p>
+            <p className="page__error-hint">
+              请逐项检查：① .env 中 VITE_SUPABASE_URL 与 VITE_SUPABASE_ANON_KEY 是否正确；
+              ② Supabase 控制台 → Authentication → Providers → Anonymous 已开启；
+              ③ 项目未暂停（免费版长期不用会暂停，需在控制台恢复）；
+              ④ 修改 .env 后已重启 <code>npm run dev</code>。
+            </p>
+            <button type="button" className="page__retry" onClick={authRetry}>重试</button>
+          </div>
+        ) : error ? (
           <p className="page__error" role="alert">
             {error}
             <button type="button" className="page__retry" onClick={() => refetch()}>

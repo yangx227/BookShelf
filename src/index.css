@@ -110,6 +110,20 @@ a:hover {
   margin: 2rem 0;
 }
 
+.page__error-hint {
+  font-size: 0.9rem;
+  margin: 0.75rem 0 0;
+  line-height: 1.6;
+  max-width: 480px;
+}
+
+.page__error-hint code {
+  background: var(--border);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
 .page__retry {
   margin-left: 0.5rem;
   color: var(--accent);

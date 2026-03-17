@@ -1,7 +1,12 @@
 import BookListPage from './pages/BookListPage'
+import { AuthProvider } from './contexts/AuthContext'
 
 function App() {
-  return <BookListPage />
+  return (
+    <AuthProvider>
+      <BookListPage />
+    </AuthProvider>
+  )
 }
 
 export default App
